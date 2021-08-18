@@ -1,0 +1,40 @@
+﻿@model WebApplication5.Models.Tblappointment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h4 align="center">Book Appointment</h4>
+
+<div class="row">
+    <div class="col-md-4">
+      
+    </div>
+        <div class="col-md-4">
+            <form asp-action="Create" asp-route-id="@ViewBag.Photographerid">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Slotid" class="control-label">Slot</label>
+                    <select asp-for="Slotid" class="form-control" asp-items="ViewBag.Slotid"></select>
+                </div>
+                <div class="form-group">
+                  
+                    <input asp-for="Photographerid" class="form-control" type="hidden" value=@ViewBag.Photographerid />
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="Appointmentdesc" class="control-label">Appointment Description</label>
+                    <textarea asp-for="Appointmentdesc" class="form-control"></textarea>
+                    <span asp-validation-for="Appointmentdesc" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group">
+                    <input type="submit" value="Book" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+  

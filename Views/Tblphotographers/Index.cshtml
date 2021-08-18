@@ -1,0 +1,184 @@
+﻿--@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@model IEnumerable<WebApplication5.Models.Tblphotographer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+    <section id="collection_detail">
+        <div class="container">
+            <div class="row">
+                <div class="collection_detail clearfix">
+                    <h3>Photographer</h3>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Search" id="searchtxt">
+                    <span class="input-group-btn">
+
+                    </span>
+                </div>
+                @foreach (var item in ViewBag.result)
+                {
+            <section >
+                <div class="collection_detail_1 collection_detail_1_bottom border_none_1 clearfix" >
+
+                    <div class="col-md-6 space_left">
+                        <div class="collection_detail_1_left clearfix">
+                            <div class="grid clearfix">
+                                <figure class="effect-marley">
+
+                                    <br />
+                                    <img src="~/img/@item.Phprofile" alt="img12" height="400px" width="100%">
+
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="collection_detail_1_right">
+                            <h2> </h2>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h1 id="bcd">@item.Photographername</h1>
+                                    </td>
+                                 </tr>
+                                <tr>
+                                    <td>
+                                        <p>Mobileno:@item.Contact</p>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                    <td>
+                                        <p>Mail:@item.Phmail</p>
+                                    </td>
+                                    </tr>
+                                <tr>
+                                    <td>
+                                        <p>City:@item.City.Cityname</p>
+                                        </td>
+                                </tr>
+                            </table>
+
+
+
+                        </div>
+                        <div class="clearfix deals_page_left_2_inner">
+                            <a class="tag_1" asp-action="inde" asp-controller="tblpackages" asp-route-id="@item.Photographerid">More  Info</a>
+
+
+                            @if (@HttpContextAccessor.HttpContext.Session.GetString("cuname") != null)
+                            {
+
+                                <a class="tag_1" asp-action="create" asp-controller="tblappointments" asp-route-id="@item.Photographerid">Book Now</a>
+
+                            }
+                            else if (@HttpContextAccessor.HttpContext.Session.GetString("puname") == null)
+                            {
+                                <a class="tag_1" asp-action="customerlogin" asp-controller="Tblcustomers">Book Now</a>
+
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+           
+                }
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script>
+                    $("#searchtxt").on("keyup", function () {
+                        // alert("hello");
+                        var textenter = $(this).val();
+                      //  alert(textenter);
+                        $("section").each(function (results) {
+                           // alert(textenter);
+                            if (results !== 0) {
+                              //  alert(results);
+                                var id = $(this).find(" td:nth-child(1)").text();
+                                //alert("hello");
+                                if (id.indexOf(textenter) !== 0 && id.toLowerCase().indexOf(textenter.toLowerCase()) < 0) {
+                                    $(this).hide();
+                                }
+                                else
+                                    $(this).show();
+                            }
+                        });
+                    });
+                </script>
+
+                </div>
+                </div>
+            </section>
+    @* <button onclick="getLocation()">Try It</button>
+
+            <p id="demo"></p>
+
+            <script>
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+
+        function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude +
+          "<br>Longitude: " + position.coords.longitude;
+        }
+            </script>
+            <section id="deals_page">
+                <div class="container">
+                    <div class="row">
+                        <div class="deals_page clearfix">
+                            @foreach (var item in Model)
+                            {
+
+                                <div class="col-sm-6">
+
+                                    <div class="deals_page_left bg_1 clearfix">
+
+                                        <div class="col-sm-5">
+                                            <div class="deals_page_left_1 card-image">
+                                                <a href="#"><img src="~/img/kis.jpg" width="100%" height="185px"></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-7 space_left">
+                                            <div class="deals_page_left_2">
+                                                <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
+                                                <h3>@Html.DisplayFor(modelItem => item.MobileNo)</h3>
+                                                <p>@Html.DisplayFor(modelItem => item.Email)</p>
+                                                <div class="clearfix deals_page_left_2_inner">
+                                                    <a class="tag_1" asp-action="moreinfo" asp-route-id="@item.Id">Get  Info</a>
+                                                    <a class="tag_2" href="#">Get this Offer <i class="fa fa-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+    *@
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+﻿@model WebApplication5.Models.Tblphotographer
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h2 align="center">Edit Profile</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Photographerid" />
+                <div class="form-group">
+                    <label asp-for="Photographername" class="control-label">Name</label>
+                    <input asp-for="Photographername" class="form-control" />
+                    <span asp-validation-for="Photographername" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phusername" class="control-label">Username</label>
+                    <input asp-for="Phusername" class="form-control" />
+                    <span asp-validation-for="Phusername" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phpassword" class="control-label">Password</label>
+                    <input asp-for="Phpassword" class="form-control" />
+                    <span asp-validation-for="Phpassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Contact" class="control-label">Contact</label>
+                    <input asp-for="Contact" class="form-control" />
+                    <span asp-validation-for="Contact" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Phmail" class="control-label">Mail</label>
+                    <input asp-for="Phmail" class="form-control" />
+                    <span asp-validation-for="Phmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cityid" class="control-label">City</label>
+                    <select asp-for="Cityid" class="form-control" asp-items="ViewBag.Cityid"></select>
+                    <span asp-validation-for="Cityid" class="text-danger"></span>
+                </div>
+                
+                  <input asp-for="Phprofile" class="form-control" type="hidden"/>
+                    <input asp-for="Lat" class="form-control" type="hidden" />
+                    <span asp-validation-for="Lat" class="text-danger"></span>
+             
+                   
+                    <input asp-for="Lan" class="form-control" type="hidden"/>
+                    <span asp-validation-for="Lan" class="text-danger"></span>
+               
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+
+   

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApplication5.Models.Tblappointmentslot>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 align="center">Appointment Slots</h1>
+
+
+<table class="table"  align="center">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Slotid">Edit</a> |
+               
+                <a asp-action="Delete" asp-route-id="@item.Slotid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

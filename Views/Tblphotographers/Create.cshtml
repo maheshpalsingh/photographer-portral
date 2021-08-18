@@ -1,0 +1,183 @@
+﻿@model WebApplication5.Models.Tblphotographer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body onload="getLocation()">
+
+
+
+
+    <section id="contact_us">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h1 class="port">Photographer Registartion</h1>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <form asp-action="create" enctype="multipart/form-data">
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label asp-for="Photographername" class="control-label">Name</label>
+                                        <input asp-for="Photographername" class="form-control" data-validation-required-message="Please enter your password." />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label asp-for="Phusername" class="control-label">Username</label>
+                                        <input asp-for="Phusername" class="form-control" data-validation-required-message="Please enter your password." />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label asp-for="Phpassword" class="control-label">Password</label>
+                                        <input asp-for="Phpassword" class="form-control" data-validation-required-message="Please enter your password." />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label asp-for="Contact" class="control-label"></label>
+                                        <input asp-for="Contact" class="form-control" data-validation-required-message="Please enter your password." />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label asp-for="Phmail" class="control-label">Mail</label>
+                                        <input asp-for="Phmail" class="form-control" data-validation-required-message="Please enter your password." />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label asp-for="Cityid" class="control-label">City</label>
+                                        <select asp-for="Cityid" class="form-control" asp-items="ViewBag.Cityid" data-validation-required-message="Please enter your password."></select>
+                                    </div>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label class="control-label">Profilepic</label>
+                                        <input type="file" name="files" class="form-control" />
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                                        <script>
+
+                                                        </script>
+
+                                                        <input asp-for="Lat" id="lat" class="form-control" readonly type="hidden" />
+
+
+                                                        <input asp-for="Lan" id="lan" class="form-control" readonly type="hidden" />
+
+
+                                                        <script>
+                                                            function getLocation() {
+                                                                if (navigator.geolocation) {
+                                                                    navigator.geolocation.getCurrentPosition(showPosition);
+                                                                }
+                                                            }
+
+                                                            function showPosition(position) {
+                                                                document.getElementById('lat').value = position.coords.latitude;
+                                                                document.getElementById('lan').value = position.coords.longitude;
+                                                            }
+                                                        </script>
+                                                        <br />
+                                                        <div class="form-group">
+                                                            <input type="submit" value="Submit" class="btn btn-primary" />
+                                                        </div>
+</form>
+                            <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                            <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                            @*  <form name="sentMessage" id="contactForm" novalidate="" enctype="multipart/form-data" asp-action="add">
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label asp-for="Name"></label>
+                                            <input type="text" class="form-control" placeholder="Name" asp-for="Name">
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Address</label>
+                                            <textarea rows="5" class="form-control" placeholder="Address" id="message" required="" data-validation-required-message="Please Write your Address."></textarea>
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Email Address</label>
+                                            <input type="email" class="form-control" placeholder="Email Address" id="email" required="" data-validation-required-message="Please enter your email address.">
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Phone Number</label>
+                                            <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required="" data-validation-required-message="Please enter your phone number.">
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>About</label>
+                                            <textarea rows="5" class="form-control" placeholder="About" id="message" required="" data-validation-required-message="Please Write About you."></textarea>
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label>Studio Name</label>
+                                            <input type="tel" class="form-control" placeholder="Studio Name" id="phone" required="" data-validation-required-message="Please enter your Studio Name.">
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                    <div class="row control-group">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <label asp-for="Image">Image </label>
+                                            <input type="file" asp-for="Image" name="files" class="form-control" placeholder="Studio Name" required="" data-validation-required-message="Please enter your Studio Name.">
+                                            <p class="help-block text-danger"></p>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div id="success"></div>
+                                    <div class="row">
+                                        <div class="form-group col-xs-12 button_1">
+                                            <button type="submit" class="btn btn-success btn-lg">Send</button>
+                                        </div>
+                                    </div>
+                                </form>*@
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PicTick</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Aladin" rel="stylesheet">
+    <link href='~/css/simplelightbox.min.css' rel='stylesheet' type='text/css'>
+    <script src="~/js/jquery-2.1.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/ekko-lightbox.js"></script>
+
+</head>
+<body>
+    <section id="header" class="clearfix">
+        <nav class="navbar navbar-default">
+            <div class="container clearfix">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header clearfix page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-action="index" class="navbar-brand" asp-controller="Tblphotographers">PicTick</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="tag_menu_1 active_tab" asp-action="index" asp-controller="Tblphotographers">HOME</a>
+                        </li>
+
+                        @if (@HttpContextAccessor.HttpContext.Session.GetString("cuname") == null && @HttpContextAccessor.HttpContext.Session.GetString("puname") == null)
+                        {
+                            <li>
+                                <a class="tag_menu" asp-action="Photographerlogin" asp-controller="Tblphotographers">Photographer Login</a>
+                            </li>
+                        }
+                        @if (@HttpContextAccessor.HttpContext.Session.GetString("puname") == null && @HttpContextAccessor.HttpContext.Session.GetString("cuname") == null)
+                        {
+                            <li>
+                                <a class="tag_menu" asp-action="customerlogin" asp-controller="Tblcustomers">Customer Login</a>
+                            </li>
+                        }
+                        @if (@HttpContextAccessor.HttpContext.Session.GetString("cuname") != null)
+                        {
+                            <li class="dropdown">
+                                <a class="tag_menu" data-toggle="dropdown">Profile<span class="fa fa-caret-down"></span></a>
+                                <ul class="dropdown-menu drop_1" style="min-width: 300px;">
+                                    <li>
+                                        <div class="row_1">
+                                            <div class="col-sm-12">
+                                                <h2> <a asp-action="edit" asp-controller="Tblcustomers">Edit Profile</a></h2>
+                                                <br />
+                                                <h2> <a asp-action="Details" asp-controller="Tblappointments">Appointments</a></h2>
+                                                <br />
+                                                <h2>  <a asp-action="logout" asp-controller="Tblphotographers">Logout</a></h2>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (@HttpContextAccessor.HttpContext.Session.GetString("puname") != null)
+                        {
+                            <li class="dropdown">
+                                <a class="tag_menu" data-toggle="dropdown">Gallery<span class="fa fa-caret-down"></span></a>
+                                <ul class="dropdown-menu drop_1" style="min-width: 300px;">
+                                    <li>
+                                        <div class="row_1">
+                                            <div class="col-sm-12">
+
+                                                <h2> <a asp-action="create" asp-controller="tblphotoes">Add Gallery</a></h2>
+                                                <br />
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="tag_menu" data-toggle="dropdown">Package<span class="fa fa-caret-down"></span></a>
+                                <ul class="dropdown-menu drop_1" style="min-width: 300px;">
+                                    <li>
+                                        <div class="row_1">
+                                            <div class="col-sm-12">
+
+                                                <h2> <a asp-action="create" asp-controller="tblpackages">Add Package</a></h2>
+                                                <br />
+                                                <h2> <a asp-action="index" asp-controller="tblpackages">Edit Package</a></h2>
+                                                <br />
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="tag_menu" data-toggle="dropdown">AppointmentSlot<span class="fa fa-caret-down"></span></a>
+                                <ul class="dropdown-menu drop_1" style="min-width: 300px;">
+                                    <li>
+                                        <div class="row_1">
+                                            <div class="col-sm-12">
+
+                                                <h2> <a asp-action="create" asp-controller="tblappointmentslots">Add AppointmentSlot</a></h2>
+                                                <br />
+                                                <h2> <a asp-action="index" asp-controller="tblappointmentslots">Edit AppointmentSlot</a></h2>
+                                                <br />
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="tag_menu" data-toggle="dropdown">Show Appointments<span class="fa fa-caret-down"></span></a>
+                                <ul class="dropdown-menu drop_1" style="min-width: 300px;">
+                                    <li>
+                                        <div class="row_1">
+                                            <div class="col-sm-12">
+                                         
+                                                <h2> <a asp-action="Index" asp-controller="Tblappointments">Show Appointments</a></h2>
+                                                <br />
+                                                
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="tag_menu" data-toggle="dropdown">Profile<span class="fa fa-caret-down"></span></a>
+                                <ul class="dropdown-menu drop_1" style="min-width: 300px;">
+                                    <li>
+                                        <div class="row_1">
+                                            <div class="col-sm-12">
+                                                <h2> <a asp-action="Edit" asp-controller="Tblphotographers">Edit Profile</a></h2>
+                                                <br />
+                                               
+                                                <h2>  <a asp-action="logout" asp-controller="Tblphotographers">Logout</a></h2>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+                      
+
+                      
+
+
+
+                    </ul>
+
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </section>
+    <section id="center">
+        <div class="clearfix">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="~/#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="~/#carousel-example-generic" data-slide-to="1" class=""></li>
+                    <li data-target="~/#carousel-example-generic" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="~/img/kis.jpg" alt="First slide">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="~/img/k.jpg" alt="Second slide">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="~/img/kis.jpg" alt="Third slide">
+                        <div class="carousel-caption">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <br />
+    <div>
+
+        @RenderBody()
+
+    </div>
+
+    <section id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer clearfix">
+                    <div class="footer_1 clearfix">
+                        <div class="col-sm-3">
+                           
+                        </div>
+                        <div class="col-sm-6">
+                           
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="footer_1_right pull-right">
+                                <h1>PICTICK <span>World of Photographers</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer_2 clearfix">
+                        <div class="col-sm-7">
+                            <div class="footer_2_left">
+                               
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="footer_2_right pull-right">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="toTop" class="btn btn-info" style="display: block; background:#e02626; border-color:#e02626;"><span class="fa fa-chevron-up"></span></div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').append('<div id="toTop" class="btn btn-info"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</div>');
+            $(window).scroll(function () {
+                if ($(this).scrollTop() != 0) {
+                    $('#toTop').fadeIn();
+                } else {
+                    $('#toTop').fadeOut();
+                }
+            });
+            $('#toTop').click(function () {
+                $("html, body").animate({ scrollTop: 0 }, 600);
+                return false;
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('i.glyphicon-thumbs-up, i.glyphicon-thumbs-down').click(function () {
+                var $this = $(this),
+                    c = $this.data('count');
+                if (!c) c = 0;
+                c++;
+                $this.data('count', c);
+                $('#' + this.id + '-bs3').html(c);
+            });
+            $(document).delegate('*[data-toggle="lightbox"]', 'click', function (event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript" src="~/js/simple-lightbox.js"></script>
+
+    <script>
+        $(function () {
+            var $gallery = $('.gallery a').simpleLightbox();
+
+            $gallery.on('show.simplelightbox', function () {
+                console.log('Requested for showing');
+            })
+                .on('shown.simplelightbox', function () {
+                    console.log('Shown');
+                })
+                .on('close.simplelightbox', function () {
+                    console.log('Requested for closing');
+                })
+                .on('closed.simplelightbox', function () {
+                    console.log('Closed');
+                })
+                .on('change.simplelightbox', function () {
+                    console.log('Requested for change');
+                })
+                .on('next.simplelightbox', function () {
+                    console.log('Requested for next');
+                })
+                .on('prev.simplelightbox', function () {
+                    console.log('Requested for prev');
+                })
+                .on('nextImageLoaded.simplelightbox', function () {
+                    console.log('Next image loaded');
+                })
+                .on('prevImageLoaded.simplelightbox', function () {
+                    console.log('Prev image loaded');
+                })
+                .on('changed.simplelightbox', function () {
+                    console.log('Image changed');
+                })
+                .on('nextDone.simplelightbox', function () {
+                    console.log('Image changed to next');
+                })
+                .on('prevDone.simplelightbox', function () {
+                    console.log('Image changed to prev');
+                })
+                .on('error.simplelightbox', function (e) {
+                    console.log('No image found, go to the next/prev');
+                    console.log(e);
+                });
+        });
+    </script>
+
+</body>
+</html>

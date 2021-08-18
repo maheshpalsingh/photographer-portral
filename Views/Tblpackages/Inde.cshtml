@@ -1,0 +1,197 @@
+﻿--@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<WebApplication5.ViewModels.PhotoCommentViewModel>
+
+@{
+
+}
+<head>
+    <style>
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 20px;
+            width: 450px;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border-radius: 6px;
+            -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1)
+        }
+
+        .comment-box {
+            padding: 5px
+        }
+
+        .comment-area textarea {
+            resize: none;
+            border: 1px solid #ad9f9f
+        }
+
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #ffffff;
+            outline: 0;
+            box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
+        }
+
+        .send {
+            color: #fff;
+            background-color: #ff0000;
+            border-color: #ff0000
+        }
+
+            .send:hover {
+                color: #fff;
+                background-color: #f50202;
+                border-color: #f50202
+            }
+
+        .rating {
+            display: flex;
+            margin-top: -10px;
+            flex-direction: row-reverse;
+            margin-left: -4px;
+            float: left
+        }
+
+            .rating > input {
+                display: none
+            }
+
+            .rating > label {
+                position: relative;
+                width: 19px;
+                font-size: 25px;
+                color: #ff0000;
+                cursor: pointer
+            }
+
+                .rating > label::before {
+                    content: "\2605";
+                    position: absolute;
+                    opacity: 0
+                }
+
+                .rating > label:hover:before,
+                .rating > label:hover ~ label:before {
+                    opacity: 1 !important
+                }
+
+            .rating > input:checked ~ label:before {
+                opacity: 1
+            }
+
+            .rating:hover > input:checked ~ label:before {
+                opacity: 0.4
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Photographer-Moreinfo</title>
+
+</head>
+<section id="exhibition">
+    <div class="container">
+        @*  <div class="row">
+                <div class="col-sm-8">
+                    <div class="exhibition_new clearfix">
+                        <div class="col-sm-4 space_left">
+                            <div class="exhibition_new_l clearfix">
+                           <img src="~/img/@Html.DisplayFor(model => model.Tblpackage.Phototgrapher.Phprofile)" style="border-radius:50%" height="100px" width="100px"><span> <h3> @Html.DisplayFor(model => model.Tblpackage.Phototgrapher.Photographername)</h3></span>
+                                <h4>@Html.DisplayFor(model => model.Tblpackage.Phototgrapher.City.Cityname)</h4>
+                                <h4>@Html.DisplayFor(model => model.Tblpackage.Price)</h4>
+                                <h4></h4>
+                                <ul class="social_tag">
+                                    <li><a href="#">Book</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 space_all">
+                            <div class="exhibition_new_r clearfix">
+
+
+                                <div class="exhibition_new_rr clearfix">
+                                    <p id="map" style="height:200px;width:200px;"></p>
+                                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjHc0bWARHQ6v0UqQXoQywYqOUnaRfQHU&callback=initMap"
+                                            defer></script>
+                                    <script>
+                                        let map;
+                                        function initMap() {
+                                            navigator.geolocation.getCurrentPosition(showPosition);
+                                            function showPosition(position) {
+                                                map = new google.maps.Map(document.getElementById('map'), {
+                                                    center: { lat: @Html.DisplayFor(model => model.Tblpackage.Phototgrapher.Lat), lng: @Html.DisplayFor(model => model.Tblpackage.Phototgrapher.Lan) },
+                                                    zoom: 8,
+                                                });
+                                            }
+                                        }
+
+                                    </script>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        @foreach (var item in Model)
+        {
+
+            <div class="posts-section col-lg-7 col-md-8 no-pd">
+                <div class="card">
+                    <img src="~/img/gallery/@Html.DisplayFor(modelItem => item.Photourl)" height="auto" width="auto" /><br />
+                    <div>
+                        <div>  </div>
+                        <div>
+                            <div>
+                                <form asp-action="Crea" asp-route-pid="@Html.DisplayFor(modelItem => item.Photoid)" asp-route-pgrid="@Html.DisplayFor(modelItem => item.Photographerid)">
+                                    <h4>Add a comment</h4><br />
+                                    <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+                                    <div class="comment-area">
+                                        <input type="text" hidden name="pid" value="@Html.DisplayFor(modelItem => item.Photoid)" />
+                                        <input type="text" hidden name="pgrid" value="@Html.DisplayFor(modelItem => item.Photographerid)" />
+                                        <textarea name="commentarea" class="form-control" placeholder="what is your view?" rows="4"></textarea>
+                                    </div>
+                                    <div class="comment-btns mt-2">
+                                        <div class="row">
+                                            <div class="col-6">
+                                               
+                                            </div>
+                                            <div class="col-6">
+                                                @if (@HttpContextAccessor.HttpContext.Session.GetString("cuname") != null)
+                                                {
+                                                    <div class="pull-right"> <input type="submit" value="Comment" class="btn btn-success btn-sm" /> </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="job-status-bar">
+                        <ul class="like-com">
+                          
+                            <li><a href="" class="com"><i class="fas fa-comment-alt"></i>@Html.ActionLink("Comments", "ShowComment", new { phid = @item.Photoid })</a></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        }
+    </div>
+</section>
+<br />
+<br />
+
+
+
+
+
+
+

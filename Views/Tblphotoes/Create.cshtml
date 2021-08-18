@@ -1,0 +1,34 @@
+﻿@model WebApplication5.Models.Tblphoto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1></h1>
+
+<h4 align="center">Add Photo</h4>
+
+<div class="row">
+    <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label>Photo</label>
+                    <input type="file" name="files" class="form-control" />
+                    
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Categoryid" class="control-label">Category</label>
+                    <select asp-for="Categoryid" class="form-control" asp-items="ViewBag.Categoryid"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+

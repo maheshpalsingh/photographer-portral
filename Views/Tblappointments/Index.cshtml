@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WebApplication5.Models.Tblappointment>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Index";
+    string a = "";
+}
+
+
+<h1 align="center">Appointment</h1>
+
+
+<table class="table" align="center">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointmentdesc)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Slot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.Customername)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appointmentdesc)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slot.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Appstatus)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Customername)
+                </td>
+
+                <td>
+
+                 
+                        <form asp-action="edi" method="post">
+
+                            <input type="hidden" name="Appointmentid" value=" @Html.DisplayFor(modelItem => item.Appointmentid)" />
+                            <input type="hidden" name="Appointmentdesc" value=" @Html.DisplayFor(modelItem => item.Appointmentdesc)" />
+                            <input type="hidden" name="Slotid" value=" @Html.DisplayFor(modelItem => item.Slotid)" />
+                            <input type="hidden" name="Customerid" value=" @Html.DisplayFor(modelItem => item.Customerid)" />
+                            <input type="hidden" name="Photographerid" value=" @Html.DisplayFor(modelItem => item.Photographerid)" />
+                            <input type="hidden" name="Statusid" value=" @Html.DisplayFor(modelItem => item.Statusid)" />
+                            <button type="submit" class="btn btn-success" id="btn">Approve</button>
+                        </form>
+
+                    
+                </td>
+                <td>
+                 
+
+                        <form asp-action="ed" method="post">
+
+                            <input type="hidden" name="Appointmentid" value=" @Html.DisplayFor(modelItem => item.Appointmentid)" />
+                            <input type="hidden" name="Appointmentdesc" value=" @Html.DisplayFor(modelItem => item.Appointmentdesc)" />
+                            <input type="hidden" name="Slotid" value=" @Html.DisplayFor(modelItem => item.Slotid)" />
+                            <input type="hidden" name="Customerid" value=" @Html.DisplayFor(modelItem => item.Customerid)" />
+                            <input type="hidden" name="Photographerid" value=" @Html.DisplayFor(modelItem => item.Photographerid)" />
+                            <input type="hidden" name="Statusid" value=" @Html.DisplayFor(modelItem => item.Statusid)" />
+                            <button type="submit" class="btn btn-danger">Decline</button>
+                        </form>
+                    
+
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>

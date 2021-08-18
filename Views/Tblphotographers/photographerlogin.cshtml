@@ -1,0 +1,74 @@
+﻿@model WebApplication5.Models.Tblphotographer
+
+@{
+    ViewData["Title"] = "photographerlogin";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+
+
+
+    <section id="contact_us">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h1 class="port">Photographer Login</h1>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                            <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                            <form method="post" >
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label asp-for="Phusername">UserName</label>
+                                        <input asp-for="Phusername" type="text" placeholder="Username" class="form-control" required="" data-validation-required-message="Please enter your username.">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label asp-for="Phpassword">Password</label>
+                                        <input asp-for="Phpassword" class="form-control" placeholder="password" required="" data-validation-required-message="Please enter your password." type="password">
+                                        <p class="help-block text-danger"></p>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <div id="success"></div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12 button_1">
+                                        <button type="submit" class="btn btn-success btn-lg">Login</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <h2>If Not Register Than <a asp-action="create">Click Here.</a></h2>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+

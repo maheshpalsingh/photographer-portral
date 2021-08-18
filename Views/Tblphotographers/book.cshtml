@@ -1,0 +1,91 @@
+﻿
+@model IEnumerable<WebApplication5.Models.Tblphotographer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    
+
+    <section id="collection_detail">
+        <div class="container">
+            <div class="row">
+                <div class="collection_detail clearfix">
+                    <h1>Book Appointment</h1>
+                </div>
+                <form align="center">
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+    @* <button onclick="getLocation()">Try It</button>
+
+            <p id="demo"></p>
+
+            <script>
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+
+        function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude +
+          "<br>Longitude: " + position.coords.longitude;
+        }
+            </script>
+            <section id="deals_page">
+                <div class="container">
+                    <div class="row">
+                        <div class="deals_page clearfix">
+                            @foreach (var item in Model)
+                            {
+
+                                <div class="col-sm-6">
+
+                                    <div class="deals_page_left bg_1 clearfix">
+
+                                        <div class="col-sm-5">
+                                            <div class="deals_page_left_1 card-image">
+                                                <a href="#"><img src="~/img/kis.jpg" width="100%" height="185px"></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-7 space_left">
+                                            <div class="deals_page_left_2">
+                                                <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
+                                                <h3>@Html.DisplayFor(modelItem => item.MobileNo)</h3>
+                                                <p>@Html.DisplayFor(modelItem => item.Email)</p>
+                                                <div class="clearfix deals_page_left_2_inner">
+                                                    <a class="tag_1" asp-action="moreinfo" asp-route-id="@item.Id">Get  Info</a>
+                                                    <a class="tag_2" href="#">Get this Offer <i class="fa fa-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+    *@
+   
+
+
+
+</body>
+
+</html>
